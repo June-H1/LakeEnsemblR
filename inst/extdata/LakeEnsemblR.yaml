@@ -4,7 +4,7 @@ location:
    longitude: 100.2                            # longitude [degrees East; min=-360.0; max=360.0]
    elevation: 3195                                # elevation of lake surface above sea level [m]
    depth: 32.8                                 # maximum water depth [m; min=0.0]
-   hypsograph: "C:/Users/SP T3660/Desktop/QHLK_bathymetry_standard.csv"         # hypsograph [csv file]
+   hypsograph: LakeEnsemblR_bathymetry_standard.csv         # hypsograph [csv file]
    init_depth: 32.8                             # initial height of lake surface relative to the bottom [m]
 time:
    start: 2000-04-16 00:00:00                   # start date and time [yyyy-mm-dd HH:MM:SS]
@@ -18,16 +18,16 @@ config_files:
    MyLake: MyLake/mylake.Rdata                  # MyLake config file [Rdata file]
 observations:
    temperature:
-      file: "D:/DATA/MODIS/QH/MODIS_D_QHLK/lktem_day.csv"         # file with observed water temperature profiles, with column headers according to LakeEnsemblR vocabulary [csv file; if none use NULL or leave empty]
+      file:LakeEnsemblR_wtemp_profile_standard.csv          # file with observed water temperature profiles, with column headers according to LakeEnsemblR vocabulary [csv file; if none use NULL or leave empty]
    ice_height:
       file: NULL                                            # file with observed ice height, with column headers according to LakeEnsemblR vocabulary [csv file; if none use NULL or leave empty]
    water_level:
       file: NULL                                            # file with observed water level in meter above bottom of the lake
 input:
    init_temp_profile:
-      file: "D:/DATA/MODIS/QH/MODIS_D_QHLK/lktem_day.csv"                                  # initial temperature profile [csv file; if none use NULL or leave empty; if empty/NULL, the observations file will be used]
+      file:    NULL                               # initial temperature profile [csv file; if none use NULL or leave empty; if empty/NULL, the observations file will be used]
    meteo:
-      file: "D:/DATA/ERA5.csv"    # file with meteorological forcing data, with column headers according to LakeEnsemblR vocabulary [csv file]
+      file: LakeEnsemblR_inflow_standard.csv     # file with meteorological forcing data, with column headers according to LakeEnsemblR vocabulary [csv file]
    light:
       Kw:                                  # light extinction coefficient [m-1, or csv file]
          all: 0.35
@@ -35,7 +35,7 @@ input:
       use: true                                 # turn on ice models? [true/false]
 inflows:
    use: true                                    # use in- and outflows? [true/false]
-   file: LakeEnsemblR_inflow_standard.csv       # file with inflow data, with column headers according to LakeEnsemblR vocabulary [csv file; must be provided if inflows -> use is true]
+   file: LakeEnsemblR_meteo_standard.csv       # file with inflow data, with column headers according to LakeEnsemblR vocabulary [csv file; must be provided if inflows -> use is true]
    number_inflows: 2                            # number of inflows in the inflow file
    fix_wlvl: false                              # Sets the water level in GOTM to a constant value. Reproduces LakeEnsemblR v1.0.0 behaviour.
 outflows:
